@@ -16,12 +16,15 @@ public class Main {
         input =  input.replaceAll("\\s", "");
         String[] arr = input.split(",", 4);
         System.out.println(Arrays.toString(arr));
-        String size1 = arr[1];
-        String size2 = arr[2];
-        String size3 = arr[3];
-        String name = arr[0];
-
-        setTriangle(size1, size2, size3, name, scanner);
+        if (arr.length != 4) {
+            System.out.println("Not correct number of parameters! ");
+            inputValues(scanner);
+        }
+            String size1 = arr[1];
+            String size2 = arr[2];
+            String size3 = arr[3];
+            String name = arr[0];
+            setTriangle(size1, size2, size3, name, scanner);
     }
 
     static void continueProgram(Scanner scanner) {
@@ -32,6 +35,7 @@ public class Main {
         }
     }
 
+    //round to two .00
     public static void outPutPrint() {
         StringBuilder sb = new StringBuilder();
         int number = 1;
@@ -41,7 +45,7 @@ public class Main {
             sb.append(". [Triangle ");
             sb.append(t.getName());
             sb.append("]: ");
-            sb.append(t.getArea());
+            sb.append(String.format("%.2f", t.getArea()));
             sb.append(" cm");
             sb.append("\n");
             number++;

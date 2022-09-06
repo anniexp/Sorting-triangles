@@ -13,7 +13,10 @@ public class Triangle {
     private double perimeter;
     private String name;
 
-    public Triangle(double sideA, double sideB, double sideC, String name) {
+    public Triangle(double sideA, double sideB, double sideC, String name) throws Exception {
+        if (!isTrianglePossible(sideA, sideB, sideC)) {
+            throw new Exception();
+        }
         this.name = name;
         this.sideA = sideA;
         this.sideB = sideB;
@@ -27,6 +30,9 @@ public class Triangle {
         double argument = p * (p - sideA) * (p - sideB) * (p - sideC);
 
         return Math.sqrt(argument) / 4;
+    }
+    boolean isTrianglePossible (double sideA, double sideB, double sideC) {
+        return !(sideA >= sideB + sideC) && !(sideB >= sideC + sideA) && !(sideC >= sideB + sideA);
     }
 
     public static void sortByAreaDesc(ArrayList<Triangle> al, Compare comp) {
